@@ -1,43 +1,39 @@
-# AquaSort - Smart Water Quality Classification & Distribution System
+# AquaSort V1.1 - Smart Water Quality Classification & Dual Tank Sorting System
 **IoTRIX 2.0 Semi-Final Submission**
 
 ## 1. Problem Statement & Proposed Solution
-* **Problem Statement:** In many industrial and residential setups, water quality fluctuates significantly, leading to the wastage of usable water or contamination of high-purity reserves due to proper real-time sorting mechanisms lacking.
-* **Proposed Solution:** AquaSort is an automated, sensor-driven IoT solution that analyzes incoming water parameters in real-time and dynamically routes the water into three specialized storage tanks:
-  1. **Potable Water Tank** (High purity for drinking/food processing)
-  2. **Non-Potable Water Tank** (Secondary use / general cleaning)
-  3. **Agricultural Water Tank** (Suitable for irrigation/farming)
+* **Problem Statement:** In many industrial and residential setups, municipal and well water quality fluctuates significantly with unannounced contamination, leading to the wastage of usable water or contamination of entire domestic bulk reserves due to lack of real-time inline verification[cite: 9].
+* **Proposed Solution:** AquaSort V1.1 is an automated, sensor-driven IoT gatekeeper solution that analyzes incoming water parameters in real-time under static hold conditions and dynamically routes the water into two specialized storage tanks based on SLS 614:2013 / WHO Potable Water standards[cite: 9]:
+  1. **Tank 1 (T1 - Potable Water Tank):** 500L storage for high-purity water dedicated to Drinking and Cooking[cite: 9].
+  2. **Tank 2 (T2 - Non-Potable Water Tank):** 500L storage for non-compliant water diverted to secondary utility uses (Laundry, Flushing, Gardening)[cite: 9].
 
 ---
 
 ## 2. System Architecture & Tech Stack
 
 ### System Architecture
-Incoming Water Source ➔ Sensor Array (pH, Turbidity, TDS) ➔ Microcontroller Logic ➔ Dynamic Actuator/Valve Control ➔ 3-Tank Routing (Potable / Non-Potable / Agricultural)
+Incoming Water Source ➔ 1–2L Stabilization Vent Chamber ➔ 10L Acrylic Sampling Tank (Tsample) ➔ 5-Sensor Array (pH, TDS, Turbidity, ORP, Temp via 16-Bit ADS1115 ADC + ATC) ➔ ESP32 4-State Controller Logic ➔ Dual Solenoid Routing ➔ 2-Tank Storage (T1 Potable / T2 Utility)[cite: 9]
 
 ### Technology Stack
-* **Hardware:** Microcontrollers (ESP32 / Arduino), Water Quality Sensors (pH, Turbidity, TDS/EC), Relay Modules & Solenoid Valves / Servo Actuators.
-* **Firmware & Embedded Software:** C / C++ (Arduino Framework / ESP-IDF)
-* **Communication Protocols:** Wi-Fi, MQTT / HTTP
-* **Software Tools:** Visual Studio Code, GitHub Desktop, MATLAB (Simulation & Analysis)
+* **Hardware:** Microcontrollers (ESP32 DevKit V1 SoC + ADS1115 16-Bit I2C External ADC), Sensors (E-201-C pH, Titanium TDS, TSD-10 Turbidity, Platinum ORP, DS18B20 Temp, XKC-Y25-V Non-contact Level Switches, JSN-SR04T Waterproof Ultrasonic Level Sensors), 12V DC Zero-Pressure Solenoid Valves[cite: 9].
+* **Firmware & Embedded Software:** C / C++ (Arduino Framework / ESP-IDF) executing 4-State Machine (FILL ➔ STABILIZE ➔ SAMPLE ➔ DRAIN)[cite: 9].
+* **Communication Protocols:** Wi-Fi, MQTT / HTTP Telemetry[cite: 9].
+* **Software Tools:** Visual Studio Code, GitHub Desktop, Dedicated IoT Interactive Web Dashboard & Mobile Interface[cite: 9].
 
 ---
 
 ## 3. Current Progress & Proof of Concept
-- [x] Initial IoT project concept and three-tank architecture designed.
-- [x] Hardware component selection and schematic baseline finalized.
-- [ ] Sensor calibration and multi-tank routing logic integration (In Progress).
-- [ ] Physical prototype assembly and live test validation (In Progress).
+- [x] Detailed AquaSort V1.1 project proposal and mechanical 2-tier sampling architecture designed[cite: 9].
+- [x] SLS 614:2013 standard decision matrix, sensor suite specs, and Bill of Materials (BOM) finalized within 28,082 LKR budget[cite: 9].
 
 ---
 
 ## 4. Current Limitations & Risks
-* Sensor calibration drift over prolonged exposure to contaminated water.
-* Actuator response time delay during high-flow water inlet conditions.
+* Sensor probe crosstalk and electrical interference during simultaneous immersion (Mitigated via >3 cm spatial separation and signal isolation)[cite: 9].
+* Hydrodynamic turbulence and micro-air bubble measurement drift (Mitigated via top 1–2 L stabilization vent chamber and 3.5s static hold period)[cite: 9].
 
 ---
 
 ## 5. Planned Improvements for Final Round
-* Real-time cloud dashboard monitoring for system diagnostics and water usage metrics.
-* Predictive filtration alert system based on turbidity data trends.
-
+* Complete real-time cloud analytics dashboard with automated alerts for industrial chemical/acidic effluent surges[cite: 9].
+* Predictive filtration maintenance alerts and valve life-cycle diagnostics based on cumulative water telemetry data[cite: 9].
